@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IconDeskTop.Views" xmlns:control="clr-namespace:IconDeskTop.Controls" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Background="#33000000"
-        Title="HomeIcons" Height="450" Width="800">
+        Background="#7F000000"
+        Title="HomeIcons" Height="450" Width="800"
+         >
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <ItemsControl VirtualizingPanel.VirtualizationMode="Recycling"  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" ItemsSource="{Binding _MyList,Mode=TwoWay}" Margin="50">
+    <ItemsControl
+        HorizontalAlignment="Center" 
+        VerticalAlignment="Center"
+        VirtualizingPanel.VirtualizationMode="Recycling"  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" ItemsSource="{Binding _MyList,Mode=TwoWay}" Margin="50">
         <ItemsControl.Template>
             <ControlTemplate TargetType="ItemsControl">
                 <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">

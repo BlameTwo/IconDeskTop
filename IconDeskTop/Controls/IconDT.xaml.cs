@@ -28,10 +28,6 @@ namespace IconDeskTop.Controls
 
 
 
-
-
-
-
         public IconModel MyData
         {
             get { return (IconModel)GetValue(MyDataProperty); }
