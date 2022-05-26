@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IconDeskTop.Views" xmlns:control="clr-namespace:IconDeskTop.Controls" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Background="#7F000000"
+        Background="#1E1E1E"
         Title="HomeIcons" Height="450" Width="800"
          >
     <i:Interaction.Triggers>
@@ -14,8 +14,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <ItemsControl
-        HorizontalAlignment="Center" 
-        VerticalAlignment="Center"
         VirtualizingPanel.VirtualizationMode="Recycling"  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" ItemsSource="{Binding _MyList,Mode=TwoWay}" Margin="50">
         <ItemsControl.Template>
             <ControlTemplate TargetType="ItemsControl">

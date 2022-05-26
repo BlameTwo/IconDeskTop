@@ -26,12 +26,7 @@ namespace IconDeskTop.Views
             InitializeComponent();
             this.DataContext = new HomeIconsVM();
             WindowBlur blur = new WindowBlur();
-            blur.SetIsEnabled(this, true);
-            Loaded += HomeIcons_Loaded;
-        }
-
-        private void HomeIcons_Loaded(object sender, RoutedEventArgs e)
-        {
+            //blur.SetIsEnabled(this, true);
             this.WindowState = System.Windows.WindowState.Normal;
             this.WindowStyle = System.Windows.WindowStyle.None;
             this.ResizeMode = System.Windows.ResizeMode.NoResize;
@@ -39,6 +34,20 @@ namespace IconDeskTop.Views
             this.Top = 0.0;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            Loaded += HomeIcons_Loaded;
+            this.Closing += HomeIcons_Closing;
+        }
+
+        private void HomeIcons_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //临时处理
+            this.Hide();
+            e.Cancel = true;
+        }
+
+        private void HomeIcons_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

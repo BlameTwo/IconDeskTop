@@ -13,6 +13,6 @@
         >
     <Grid>
         
-        <Button Margin="10" MouseLeftButtonDown="MainWindow_MouseLeftButtonDown" Style="{DynamicResource ButtonStyle1}" Click="Button_Click"/>
+        <Button MouseLeftButtonDown="MainWindow_MouseLeftButtonDown" Style="{DynamicResource ButtonStyle1}" Click="Button_Click"/>
     </Grid>
 </Window>
