@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IconDeskTop.Controls"
+             xmlns:local="clr-namespace:IconDeskTop.Controls" xmlns:Convert="clr-namespace:IconDeskTop.Convert"
              mc:Ignorable="d"
              x:Name="Home"
              Padding="10"
              d:DesignHeight="450" d:DesignWidth="800" Margin="20">
+    <UserControl.Resources>
+        <Convert:IconConvert x:Key="ImageConvert"/>
+    </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
@@ -45,7 +48,7 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
-    <Grid Background="Black" x:Name="grid" RenderTransformOrigin="0.5,0.5">
+    <Grid Background="Transparent" x:Name="grid" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -54,10 +57,8 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <TextBlock Text="图标" Foreground="White" 
-                   HorizontalAlignment="Center" 
-                   Margin="10"
-                   VerticalAlignment="Center" FontSize="25" />
+        <Image Source="{Binding Path=Icon,Converter={StaticResource ImageConvert}}" Height="50" Width="50"/>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding AppName}"/>
         <Grid.Effect>
             <DropShadowEffect 
                 BlurRadius="20" 

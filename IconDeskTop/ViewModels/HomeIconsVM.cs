@@ -1,4 +1,5 @@
 ﻿using IconDeskTop.Model;
+using IconDeskTop.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
@@ -15,22 +16,19 @@ namespace IconDeskTop.ViewModels
         public HomeIconsVM()
         {
             IsActive = true;
-            _MyList = new ObservableCollection<IconModel>();
+            _MyList = new ObservableCollection<AppSetupPathArgs>();
             
-            Loaded = new RelayCommand(() => loaded());
+            Loaded = new RelayCommand(() => loadedAsync());
         }
 
-        private void loaded()
+        private async Task loadedAsync()
         {
-            for (int i = 0; i < 25; i++)
-            {
-                _MyList.Add(new IconModel() { FilePath = "D://t.txt", Name = "VSCode" });
-            };
+            _MyList = await AppSetupPath.GetAllAppSetup();
         }
 
-        private ObservableCollection<IconModel> MyList;
+        private ObservableCollection<AppSetupPathArgs> MyList;
 
-        public ObservableCollection<IconModel> _MyList
+        public ObservableCollection<AppSetupPathArgs> _MyList
         {
             get => MyList;
             set =>SetProperty(ref MyList, value);

@@ -28,16 +28,17 @@ namespace IconDeskTop.Controls
 
 
 
-        public IconModel MyData
+
+
+        public AppSetupPathArgs MyData
         {
-            get { return (IconModel)GetValue(MyDataProperty); }
+            get { return (AppSetupPathArgs)GetValue(MyDataProperty); }
             set { SetValue(MyDataProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(IconModel), typeof(IconDT), new PropertyMetadata(null));
-
+            DependencyProperty.Register("MyData", typeof(AppSetupPathArgs), typeof(IconDT));
 
 
 

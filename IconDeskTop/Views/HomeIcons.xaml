@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IconDeskTop.Views" xmlns:control="clr-namespace:IconDeskTop.Controls" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:IconDeskTop.Views" xmlns:control="clr-namespace:IconDeskTop.Controls" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Background="#1E1E1E"
+        WindowStartupLocation="CenterScreen"
         Title="HomeIcons" Height="450" Width="800"
          >
     <i:Interaction.Triggers>
@@ -23,7 +25,7 @@
             </ControlTemplate>
         </ItemsControl.Template>
         <ItemsControl.ItemTemplate>
-            <DataTemplate >
+            <DataTemplate>
                 <control:IconDT MyData="{Binding}"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
