@@ -1,44 +1,61 @@
-﻿<UserControl x:Class="IconDeskTop.Controls.IconDT"
+﻿<Button x:Class="IconDeskTop.Controls.IconDT"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IconDeskTop.Controls" xmlns:Convert="clr-namespace:IconDeskTop.Convert"
              mc:Ignorable="d"
+             RenderTransformOrigin="0.5,0.5"
              x:Name="Home"
-             Padding="10"
+             BorderBrush="Transparent"
+            AllowDrop="True"
+             Background="White"
+             Style="{DynamicResource TranButtonDouble}"
+             Padding="15"
              d:DesignHeight="450" d:DesignWidth="800" Margin="20">
-    <UserControl.Resources>
+    <Button.ToolTip>
+        <ToolTip>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding AppName}"/>
+        </ToolTip>
+    </Button.ToolTip>
+    <Button.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </Button.RenderTransform>
+    <Button.Resources>
         <Convert:IconConvert x:Key="ImageConvert"/>
-    </UserControl.Resources>
-    <UserControl.Triggers>
+    </Button.Resources>
+    <Button.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard Timeline.DesiredFrameRate="60">
                     <DoubleAnimation 
                             Storyboard.TargetName="Home"
                             Storyboard.TargetProperty="Opacity"
-                            From="0" To="1" Duration="0:0:0:1"/>
-
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="0.8">
+                            From="0" To="1" Duration="0:0:2"/>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Home">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="0.1">
                             <EasingDoubleKeyFrame.EasingFunction>
                                 <CubicEase EasingMode="EaseOut"/>
                             </EasingDoubleKeyFrame.EasingFunction>
                         </EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0:1" Value="1">
+                        <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1">
                             <EasingDoubleKeyFrame.EasingFunction>
                                 <CubicEase EasingMode="EaseOut"/>
                             </EasingDoubleKeyFrame.EasingFunction>
                         </EasingDoubleKeyFrame>
                     </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="0.8">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Home">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="0.1">
                             <EasingDoubleKeyFrame.EasingFunction>
                                 <CubicEase EasingMode="EaseOut"/>
                             </EasingDoubleKeyFrame.EasingFunction>
                         </EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0:1" Value="1">
+                        <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1">
                             <EasingDoubleKeyFrame.EasingFunction>
                                 <CubicEase EasingMode="EaseOut"/>
                             </EasingDoubleKeyFrame.EasingFunction>
@@ -47,25 +64,19 @@
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
-    </UserControl.Triggers>
-    <Grid Background="Transparent" x:Name="grid" RenderTransformOrigin="0.5,0.5">
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform/>
-                <SkewTransform/>
-                <RotateTransform/>
-                <TranslateTransform/>
-            </TransformGroup>
-        </Grid.RenderTransform>
-        <Image Source="{Binding Path=Icon,Converter={StaticResource ImageConvert}}" Height="50" Width="50"/>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding AppName}"/>
-        <Grid.Effect>
+    </Button.Triggers>
+    <Button.Content>
+
+        <Grid x:Name="grid">
+            <Image Source="{Binding Path=Icon,Converter={StaticResource ImageConvert}}" Height="35" Width="35"/>
+            <!--<Grid.Effect>
             <DropShadowEffect 
                 BlurRadius="20" 
                 Color="White"
                 ShadowDepth="0" 
                 Direction="0" 
                 Opacity="0.5"/>
-        </Grid.Effect>
-    </Grid>
-</UserControl>
+        </Grid.Effect>-->
+        </Grid>
+    </Button.Content>
+</Button>

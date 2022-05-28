@@ -30,7 +30,6 @@ namespace IconDeskTop.Models
                 var files = dirinfo.GetFiles("*.lnk");
                 foreach (var item in files)
                 {
-
                     WshShell wshShell = new WshShell(); 
                     IWshShortcut lnk = (IWshShortcut)wshShell.CreateShortcut(item.FullName);
                     if (!System.IO.File.Exists(lnk.TargetPath))
@@ -46,10 +45,14 @@ namespace IconDeskTop.Models
                     {
                         WshShell wshShell = new WshShell();
                         IWshShortcut lnk = (IWshShortcut)wshShell.CreateShortcut(item3.FullName);
-                        if (!System.IO.File.Exists(lnk.TargetPath))
+                        string path = lnk.TargetPath;
+                        if (!System.IO.File.Exists(lnk.TargetPath) || String.IsNullOrWhiteSpace(lnk.TargetPath))
                         {
                             continue;
                         }
+                        string extension = System.IO.Path.GetExtension(path);
+                        if (extension.ToLower() != ".exe")
+                            continue;
                         list.Add(GetLnk(item3.FullName));
                     } 
                 }
@@ -63,10 +66,10 @@ namespace IconDeskTop.Models
             WshShell wshShell = new WshShell();
             IWshShortcut lnk = (IWshShortcut)wshShell.CreateShortcut(path);
             AppSetupPathArgs arg = new AppSetupPathArgs();
-
-             arg.AppName = System.IO.Path.GetFileNameWithoutExtension(lnk.FullName);
+            arg.AppName = System.IO.Path.GetFileNameWithoutExtension(lnk.FullName);
             arg.DirectoryPath = lnk.WorkingDirectory;
             arg.Icon = lnk.TargetPath;
+            arg.lnk = path;
             return arg;
         }
 

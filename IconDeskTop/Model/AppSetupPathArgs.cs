@@ -26,5 +26,7 @@ namespace IconDeskTop.Model
         /// 发布公司
         /// </summary>
         public string Publisher { get; set; }
+
+        public string lnk { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IconDeskTop.Models.IconDeskTop.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -17,33 +18,42 @@ namespace IconDeskTop.Convert
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-                var bitmap = new BitmapImage();
-                var iconTotalCount = PrivateExtractIcons(value.ToString(), 0, 0, 0, null, null, 0, 0);
-                IntPtr[] hIcons = new IntPtr[iconTotalCount];
-                int[] ids = new int[iconTotalCount];
-                var successCount = PrivateExtractIcons(value.ToString(), 0, 256, 256, hIcons, ids, iconTotalCount, 0);
-
-                MemoryStream ms = new MemoryStream();
-                //遍历并保存图标
-                for (var i = 0; i < successCount; i++)
+            string extion = System.IO.Path.GetExtension(value.ToString().ToLower());
+            if (extion != ".exe")
+            {
+                BitmapImage image = new BitmapImage();
+                Icon icon = GetSystemIcon.GetIconByFileType(Path.GetFileNameWithoutExtension("." + value.ToString()), true);
+                MemoryStream m2 = new MemoryStream();
+                icon.ToBitmap().Save(m2, System.Drawing.Imaging.ImageFormat.Png);
+                image.StreamSource = m2;
+                return image;
+            }
+            var bitmap = new BitmapImage();
+            var iconTotalCount = PrivateExtractIcons(value.ToString(), 0, 0, 0, null, null, 0, 0);
+            IntPtr[] hIcons = new IntPtr[iconTotalCount];
+            int[] ids = new int[iconTotalCount];
+            var successCount = PrivateExtractIcons(value.ToString(), 0, 256, 256, hIcons, ids, iconTotalCount, 0);
+            MemoryStream ms = new MemoryStream();
+            //遍历并保存图标
+            for (var i = 0; i < successCount; i++)
+            {
+                //指针为空，跳过
+                if (hIcons[i] == IntPtr.Zero) continue;
+                using (var ico = Icon.FromHandle(hIcons[0]))
                 {
-                    //指针为空，跳过
-                    if (hIcons[i] == IntPtr.Zero) continue;
-                    using (var ico = Icon.FromHandle(hIcons[i]))
+                    using (var myIcon = ico.ToBitmap())
                     {
-                        using (var myIcon = ico.ToBitmap())
-                        {
-                            if (myIcon.Height == 0 || myIcon.Width == 0)
-                                continue;
-                            myIcon.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                            bitmap.BeginInit();
-                            bitmap.StreamSource = ms;
-                            bitmap.EndInit();
-                            bitmap.Freeze();
-                            return bitmap;
-                        }
+                        if (myIcon.Height == 0 || myIcon.Width == 0)
+                            continue;
+                        myIcon.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        bitmap.BeginInit();
+                        bitmap.StreamSource = ms;
+                        bitmap.EndInit();
+                        bitmap.Freeze();
+                        return bitmap;
                     }
                 }
+            }
             return null;
         }
 
