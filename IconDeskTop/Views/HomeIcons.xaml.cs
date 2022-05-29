@@ -25,7 +25,6 @@ namespace IconDeskTop.Views
         {
             InitializeComponent();
             this.DataContext = new HomeIconsVM();
-            this.ResizeMode = System.Windows.ResizeMode.NoResize;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth-50;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight-50;
             Loaded += HomeIcons_Loaded;

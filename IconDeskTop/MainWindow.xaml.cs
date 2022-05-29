@@ -1,7 +1,10 @@
-﻿using IconDeskTop.Views;
+﻿using IconDeskTop.Models;
+using IconDeskTop.ViewModels;
+using IconDeskTop.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -29,10 +32,16 @@ namespace IconDeskTop
         {
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
+            this.DataContext = new MainWindowVM();
         }
         public static HomeIcons Home = new HomeIcons();
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            WindowBlur blur = new WindowBlur();
+            double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+            double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
+            this.Top = y - (y / 2) + 300;
+            blur.SetIsEnabled(this, true);
             IntPtr hwnd = new WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, (-20), 0x80);
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
@@ -50,11 +59,15 @@ namespace IconDeskTop
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+           
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Home.Show();
         }
     }
+
+
 }

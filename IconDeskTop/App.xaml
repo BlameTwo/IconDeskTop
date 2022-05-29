@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="Style/Button.xaml"/>
                 <ResourceDictionary Source="Style/TipTop.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="IconFont">pack://application:,,,/Assets/#DeskTopIcon</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+

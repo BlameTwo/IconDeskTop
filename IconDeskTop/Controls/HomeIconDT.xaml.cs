@@ -1,4 +1,4 @@
-﻿using IconDeskTop.Model;
+﻿using IconXml;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,47 +18,29 @@ using System.Windows.Shapes;
 namespace IconDeskTop.Controls
 {
     /// <summary>
-    /// IconDT.xaml 的交互逻辑
+    /// HomeIconDT.xaml 的交互逻辑
     /// </summary>
-    public partial class IconDT : Button
+    public partial class HomeIconDT : Button
     {
-        public IconDT()
+        public HomeIconDT()
         {
             InitializeComponent();
-            this.Click += IconDT_Click;
+            this.Click += HomeIconDT_Click;
         }
 
-        private void IconDT_Click(object sender, RoutedEventArgs e)
+        private void HomeIconDT_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Process.Start(MyData.Icon);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Process.Start(MyData.Prcess,MyData.ProcessArg);
         }
 
-
-
-
-
-        public AppSetupPathArgs MyData
+        public HomeIconArgs MyData
         {
-            get { return (AppSetupPathArgs)GetValue(MyDataProperty); }
+            get { return ( HomeIconArgs)GetValue(MyDataProperty); }
             set { SetValue(MyDataProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(AppSetupPathArgs), typeof(IconDT), new PropertyMetadata(default(AppSetupPathArgs)));
-
-
-
-
-
-
-
+            DependencyProperty.Register("MyData", typeof( HomeIconArgs), typeof(HomeIconDT), new PropertyMetadata(default(HomeIconDT)));
     }
 }

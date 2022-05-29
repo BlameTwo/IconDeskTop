@@ -21,7 +21,7 @@ namespace IconDeskTop.ViewModels
             Loaded = new RelayCommand(() => loadedAsync());
         }
 
-        private async Task loadedAsync()
+        private async void loadedAsync()
         {
             _MyList = await AppSetupPath.GetAllAppSetup();
         }

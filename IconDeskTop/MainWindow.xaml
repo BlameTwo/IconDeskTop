@@ -3,16 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IconDeskTop"
+        xmlns:local="clr-namespace:IconDeskTop" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:control="clr-namespace:IconDeskTop.Controls"
         mc:Ignorable="d"
-        AllowsTransparency="True"
-        WindowStyle="None"
         Background="Transparent"
+        ResizeMode="NoResize"
+        Style="{DynamicResource WindowStyle2}"
         ShowInTaskbar="False"
-        Title="MainWindow" Height="40" Width="40"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="80" 
+        MinWidth="1200" MaxWidth="1200"
         >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Loaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <DataTemplate x:Key="HomeIcon">
+            <control:HomeIconDT MyData="{Binding}"/>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="ItemsControlStyle" TargetType="ItemsControl">
+            <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}"  HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="Auto">
+                <ItemsPresenter/>
+            </ScrollViewer>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
-        
-        <Button MouseLeftButtonDown="MainWindow_MouseLeftButtonDown" Style="{DynamicResource ButtonStyle1}" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <ItemsControl ItemsSource="{Binding _HomeList}" Template="{StaticResource ItemsControlStyle}" ItemTemplate="{StaticResource HomeIcon}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </Window>
