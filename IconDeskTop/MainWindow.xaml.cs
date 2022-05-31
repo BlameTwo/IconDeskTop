@@ -59,7 +59,6 @@ namespace IconDeskTop
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-           
         }
 
 
@@ -67,6 +66,7 @@ namespace IconDeskTop
         {
             Home.Show();
         }
+
     }
 
 

@@ -18,7 +18,7 @@ namespace IconXml
                 XmlDocument xmldoc = null;
                 if (!File.Exists(filename))
                 {
-                    xmldoc = await CreateHeader(IconXml.Home, filename);
+                    await CreateHeader(IconXml.Home, filename);
                 }
                 xmldoc = new XmlDocument();
                 xmldoc.Load(filename);
@@ -33,14 +33,13 @@ namespace IconXml
             });
         }
 
-        public async  static Task<XmlDocument> CreateHeader(IconXml enums,string filename)
+        public async  static Task  CreateHeader(IconXml enums,string filename)
         {
-            return await Task.Run(() =>
+            await Task.Run(() =>
             {
                 XmlDocument xnldoc = new XmlDocument();
                 XmlNode header = xnldoc.CreateXmlDeclaration("1.0", "utf-8", "");
                 XmlElement icons = xnldoc.CreateElement("Icons");
-                
                 xnldoc.AppendChild(header);
                 switch (enums)
                 {
@@ -58,13 +57,10 @@ namespace IconXml
                 }
                 xnldoc.AppendChild(icons);
                 xnldoc.Save(filename);
-                return xnldoc;
             });
         }
 
 
-        public enum IconXml{
-            Home,Icon
-        }
+       
     }
 }

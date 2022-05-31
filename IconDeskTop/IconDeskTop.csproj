@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\app.svg" />
     <None Remove="Assets\Computer.svg" />
     <None Remove="Assets\Control.svg" />
     <None Remove="Assets\Recycle.svg" />
@@ -46,6 +47,12 @@
     <Content Include="Assets\Computer.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\app.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

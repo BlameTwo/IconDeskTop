@@ -30,12 +30,36 @@ namespace IconXml
 
     public class IconArgs
     {
+        /// <summary>
+        /// 快捷按钮磁盘位置
+        /// </summary>
+        public string Lnk { get; set; }
 
+        /// <summary>
+        /// 应用名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 图标位置
+        /// </summary>
+        public string IconPath { get; set; }    
+
+        /// <summary>
+        /// 可执行文件路径
+        /// </summary>
+        public string AppProcess { get; set; }
+
+        /// <summary>
+        /// 启动参数
+        /// </summary>
+        public string AppArgs { get; set; }
     }
 
-
-    public class Read
+    public enum IconXml
     {
-
+        Home, Icon
     }
+
+    
 }

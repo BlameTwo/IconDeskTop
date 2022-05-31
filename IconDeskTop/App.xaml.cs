@@ -30,6 +30,7 @@ namespace IconDeskTop
             _contentLoaded1 = true;
 
             this.StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
+            //this.StartupUri = new System.Uri("Views/HomeIcons.xaml", System.UriKind.Relative);
 
             System.Uri resourceLocater = new System.Uri("/IconDeskTop;component/app.xaml", System.UriKind.Relative);
 
