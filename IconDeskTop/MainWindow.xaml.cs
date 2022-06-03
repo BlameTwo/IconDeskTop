@@ -37,11 +37,9 @@ namespace IconDeskTop
         public static HomeIcons Home = new HomeIcons();
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            WindowBlur blur = new WindowBlur();
             double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
             this.Top = y - (y / 2) + 300;
-            blur.SetIsEnabled(this, true);
             IntPtr hwnd = new WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, (-20), 0x80);
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);

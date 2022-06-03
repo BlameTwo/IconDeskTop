@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IconDeskTop" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:control="clr-namespace:IconDeskTop.Controls"
+        xmlns:local="clr-namespace:IconDeskTop" 
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:control="clr-namespace:IconDeskTop.Controls"
         mc:Ignorable="d"
-        Background="Transparent"
         ResizeMode="NoResize"
+        Background="Transparent"
         Style="{DynamicResource WindowStyle2}"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen"
@@ -15,6 +17,17 @@
         MinWidth="{Binding ElementName=HomeGrid,Path=ActualWidth}"
         MaxWidth="1000"
         >
+    <Window.ContextMenu>
+        <ContextMenu Style="{StaticResource ContetMenuStyle1}">
+
+            <MenuItem Header="标题！！"  Template="{StaticResource MenuItemStyle1}"/>
+            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
+            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
+            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
+            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
+            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
+        </ContextMenu>
+    </Window.ContextMenu>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -39,22 +52,27 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <ItemsControl  ItemsSource="{Binding _HomeList}" 
-                       Template="{StaticResource ItemsControlStyle}" 
-                       ItemTemplate="{StaticResource HomeIcon}">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/gjvlel.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <ItemsControl  
+            ItemsSource="{Binding _HomeList}" 
+            Template="{StaticResource ItemsControlStyle}" 
+            ItemTemplate="{StaticResource HomeIcon}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <ItemsControl ItemsSource="{Binding _AppList}" 
+        <ItemsControl ItemsSource="{Binding _AppList}"
                       Grid.Column="1"
                       ItemTemplate="{StaticResource AppIcon}" 
                       Template="{StaticResource ItemsControlStyle}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel  Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

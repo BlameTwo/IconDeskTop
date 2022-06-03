@@ -27,6 +27,8 @@ namespace IconXml
         }
 
 
+
+
         public static async Task AddArgs(IconXml enumxml,string filename,ObservableCollection<IconArgs> args)
         {
             await Task.Run(() =>
@@ -38,7 +40,13 @@ namespace IconXml
                 {
                     foreach (var item in args)
                     {
-                        foreach (var item2 in icons.SelectNodes(".//IconArgs"))
+                        //11个图标
+                        var lists = icons.SelectNodes(".//IconArgs");
+                        if(lists.Count >= 11)           //最大十一个图标，超过十一个就退出方法
+                        {
+                            return;
+                        }
+                        foreach (var item2 in lists)
                         {
                             var txt = ((XmlElement)item2).SelectSingleNode("IconPath").InnerText;
                             if (txt == item.IconPath)
@@ -53,7 +61,27 @@ namespace IconXml
                 }
                 xmldoc.Save(filename);
             });
-            
+        }
+
+
+
+
+        public static async Task<bool> ExistsAppIcon(IconXml enumxml,string filename, IconArgs args)
+        {
+            return await Task.Run(() =>
+            {
+                var xmldoc = new XmlDocument();
+                //IconPath
+                xmldoc.Load(filename);
+                var lists = xmldoc.SelectNodes("//AppIcons//IconArgs");
+                foreach (XmlNode item in lists)
+                {
+                    var arg = Deserialize(item.OuterXml);
+                    if (arg.IconPath == args.IconPath)
+                        return true;
+                }
+                return false;
+            });
         }
 
         public static async Task<ObservableCollection<IconArgs>> ReadArgs(string filename)
@@ -73,6 +101,7 @@ namespace IconXml
             });
         }
 
+
         public static IconArgs Deserialize(string xmlstr)
         {
             using(StringReader reader = new StringReader(xmlstr))
@@ -82,6 +111,8 @@ namespace IconXml
                 return aa;
             }
         }
+
+
 
         public static  string  XmlSerialize(IconArgs arg)
         {

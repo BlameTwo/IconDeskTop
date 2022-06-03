@@ -18,6 +18,7 @@
     <None Remove="Assets\app.svg" />
     <None Remove="Assets\Computer.svg" />
     <None Remove="Assets\Control.svg" />
+    <None Remove="Assets\gjvlel.jpg" />
     <None Remove="Assets\Recycle.svg" />
     <None Remove="Assets\文件夹.svg" />
   </ItemGroup>
@@ -53,6 +54,9 @@
     <EmbeddedResource Include="Assets\app.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Assets\gjvlel.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

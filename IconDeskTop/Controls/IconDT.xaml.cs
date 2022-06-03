@@ -43,7 +43,26 @@ namespace IconDeskTop.Controls
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(AppSetupPathArgs), typeof(IconDT), new PropertyMetadata(default(AppSetupPathArgs)));
+            DependencyProperty.Register("MyData", typeof(AppSetupPathArgs), typeof(IconDT), new PropertyMetadata(default(AppSetupPathArgs),
+            new PropertyChangedCallback(async (s, e) =>
+            {
+            var mycontrol = s as IconDT;
+            var value = e.NewValue as AppSetupPathArgs;
+            var newvalue = new IconArgs()
+            {
+                AppArgs = "",
+                AppProcess = value.Icon,
+                IconPath = value.Icon,
+                Lnk = value.lnk,
+                Name = value.AppName
+            };
+            if(await AppIconXml.ExistsAppIcon(IconXml.IconXml.Icon,
+               IconDeskTop.Model.Resources.DocPath + "//IconDesTop//AppXml.xml", newvalue))
+                {
+                    mycontrol ! .IsEnabled = false;
+                    mycontrol.ToolTip = "已经添加该图标！";
+                }
+            })));
 
         private async  void Home_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
