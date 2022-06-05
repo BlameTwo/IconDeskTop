@@ -64,9 +64,10 @@ namespace IconDeskTop.Controls
                 }
             })));
 
-        private async  void Home_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private async  void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if(!File.Exists(IconDeskTop.Model.Resources.DocPath + "\\IconDesTop\\AppXml.xml"))
+            if (!File.Exists(IconDeskTop.Model.Resources.DocPath + "\\IconDesTop\\AppXml.xml"))
             {
                 await AppIconXml.CreateHeader(IconXml.IconXml.Icon,
                 IconDeskTop.Model.Resources.DocPath + "\\IconDesTop\\AppXml.xml",
@@ -99,6 +100,19 @@ namespace IconDeskTop.Controls
                 });
             }
         }
-            
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            using(Process pro = new Process())
+            {
+                pro.StartInfo = new ProcessStartInfo()
+                {
+                     FileName = MyData.Icon,
+                     WorkingDirectory = MyData.DirectoryPath,
+
+                };
+                pro.Start();
+            }
+        }
     }
 }

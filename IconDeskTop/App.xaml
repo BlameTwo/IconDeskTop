@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Style/TipTop.xaml"/>
                 <ResourceDictionary Source="Style/ScrollbarViewer.xaml"/>
                 <ResourceDictionary Source="Style/Menu.xaml"/>
+                <ResourceDictionary Source="Theme\Dark.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="IconFont">pack://application:,,,/Assets/#DeskTopIcon</FontFamily>
         </ResourceDictionary>

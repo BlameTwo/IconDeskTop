@@ -3,22 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IconDeskTop.Controls" xmlns:Convert="clr-namespace:IconDeskTop.Convert"
+             xmlns:local="clr-namespace:IconDeskTop.Controls" 
+             xmlns:Convert="clr-namespace:IconDeskTop.Convert"
              mc:Ignorable="d"
              RenderTransformOrigin="0.5,0.5"
              x:Name="Home"
              BorderBrush="Transparent"
              AllowDrop="True"
-             Background="White"
+             Click="Home_Click"
+             Foreground="{DynamicResource AppForeColor}"
+             Background="{DynamicResource ElmentBackColor}"
              Style="{DynamicResource TranButtonDouble}"
              Padding="15"
-             MouseDoubleClick="Home_MouseDoubleClick"
              d:DesignHeight="450" d:DesignWidth="800" Margin="20">
+    <Button.ContextMenu>
+        <ContextMenu Style="{StaticResource ContetMenuStyle1}">
+            <MenuItem Header="添加" Click="MenuItem_Click" Template="{StaticResource MenuItemStyle1}"/>
+        </ContextMenu>
+    </Button.ContextMenu>
     <Button.ToolTip>
         <ToolTip>
             <StackPanel >
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding AppName}"/>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="双击增加到桌面应用栏"/>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="右键展开菜单"/>
             </StackPanel>
         </ToolTip>
     </Button.ToolTip>

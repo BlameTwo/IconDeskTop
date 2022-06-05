@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:IconDeskTop.Views" xmlns:control="clr-namespace:IconDeskTop.Controls" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Background="#1E1E1E"
+        Foreground="{StaticResource AppForeColor}" 
+        Background="{DynamicResource AppBackColor}"
         WindowStartupLocation="CenterScreen"
         Title="HomeIcons" Height="450" Width="800"
          >
@@ -22,7 +23,6 @@
         </Grid.RowDefinitions>
         <TextBlock 
             Text="请双击图标添加桌面图标！" 
-            Foreground="White" 
             Margin="10"
             FontSize="25"/>
         <ItemsControl
@@ -30,7 +30,7 @@
             VirtualizingPanel.VirtualizationMode="Recycling"  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" ItemsSource="{Binding _MyList,Mode=TwoWay}" Margin="50">
             <ItemsControl.Template>
                 <ControlTemplate TargetType="ItemsControl">
-                    <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource for_scrollviewer}" Padding="{TemplateBinding Padding}">
+                    <ScrollViewer x:Name="ScrollViewer" Style="{DynamicResource for_scrollviewer}" Padding="{TemplateBinding Padding}">
                         <ItemsPresenter/>
                     </ScrollViewer>
                 </ControlTemplate>

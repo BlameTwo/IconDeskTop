@@ -1,4 +1,5 @@
 ﻿using IconDeskTop.Models;
+using IconDeskTop.Theme;
 using IconDeskTop.ViewModels;
 using IconDeskTop.Views;
 using System;
@@ -33,7 +34,10 @@ namespace IconDeskTop
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
             this.DataContext = new MainWindowVM();
+
         }
+
+
         public static HomeIcons Home = new HomeIcons();
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -65,6 +69,16 @@ namespace IconDeskTop
             Home.Show();
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeStat.ThemeApply(Theme.Theme.Light);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            ThemeStat.ThemeApply(Theme.Theme.Dark);
+        }
     }
 
 

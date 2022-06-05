@@ -7,26 +7,8 @@
         <Setter Property="TextElement.FontSize" Value="12" />
         <Setter Property="TextBlock.TextAlignment" Value="Justify" />
         <Setter Property="TextElement.FontFamily" Value="微软雅黑" />
-        <Setter Property="TextElement.Foreground">
-            <Setter.Value>
-                <SolidColorBrush Color="White" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <SolidColorBrush Color="White" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="#1E1E1E" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="#2E2E2E" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Foreground" Value="{DynamicResource AppForeColor}"/>
+        <Setter Property="Background" Value="{DynamicResource TipBackColor}"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template">
@@ -39,18 +21,10 @@
                         MaxWidth="{TemplateBinding MaxWidth}"
                         Padding="8"
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderBrush="{DynamicResource ElmentBorderBrush}"
                         BorderThickness="1"
                         CornerRadius="4"
                         SnapsToDevicePixels="True">
-                        <Border.Effect>
-                            <DropShadowEffect
-                                BlurRadius="30"
-                                Direction="0"
-                                Opacity="0.4"
-                                ShadowDepth="0"
-                                Color="#202020" />
-                        </Border.Effect>
                         <ContentPresenter
                             Margin="4"
                             HorizontalAlignment="Left"
@@ -67,6 +41,6 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource UiTooltip}" TargetType="{x:Type ToolTip}" />
+    <Style BasedOn="{StaticResource  UiTooltip}" TargetType="{x:Type ToolTip}" />
 
 </ResourceDictionary>

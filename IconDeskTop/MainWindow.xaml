@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:control="clr-namespace:IconDeskTop.Controls"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Background="Transparent"
+        Background="{DynamicResource AppBackColor}"
         Style="{DynamicResource WindowStyle2}"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen"
@@ -20,12 +20,16 @@
     <Window.ContextMenu>
         <ContextMenu Style="{StaticResource ContetMenuStyle1}">
 
-            <MenuItem Header="标题！！"  Template="{StaticResource MenuItemStyle1}"/>
-            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
-            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
-            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
-            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
-            <MenuItem Header="标题！！" Template="{StaticResource MenuItemStyle1}"/>
+            <MenuItem Header="白色" 
+                      Foreground="{DynamicResource AppForeColor}"
+                      Click="MenuItem_Click_1" 
+                      Template="{StaticResource MenuItemStyle1}"/>
+            <Separator/>
+            <MenuItem Header="深色"
+                      Foreground="{DynamicResource AppForeColor}"
+                      Click="MenuItem_Click" Template="{StaticResource MenuItemStyle1}">
+            </MenuItem>
+           
         </ContextMenu>
     </Window.ContextMenu>
     <i:Interaction.Triggers>
@@ -52,10 +56,9 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="/Assets/gjvlel.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>
+        </Grid.Background>-->
         <ItemsControl  
             ItemsSource="{Binding _HomeList}" 
             Template="{StaticResource ItemsControlStyle}" 

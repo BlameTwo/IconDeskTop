@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--深色背景-->
+    <SolidColorBrush x:Key="AppBackColor" Color="Black" Opacity="1"/>
+    <SolidColorBrush x:Key="AppForeColor" Color="#F5F5F5"/>
+    <SolidColorBrush x:Key="ElmentBackColor" Color="#7FFFFFFF" Opacity="0.5"/>
+    <SolidColorBrush x:Key="TipBackColor" Color="#FF3A3A45"/>
+    <SolidColorBrush x:Key="ElmentBorderBrush" Color="White" Opacity="0.4"/>
+</ResourceDictionary>
