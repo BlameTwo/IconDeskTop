@@ -71,7 +71,8 @@ namespace IconDeskTop
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            ThemeStat.ThemeApply(Theme.Theme.Light);
+            System.Environment.Exit(0);
+            //ThemeStat.ThemeApply(Theme.Theme.Light);
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)

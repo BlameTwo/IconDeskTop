@@ -10,6 +10,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using IconDeskTop.Model;
 using System.IO;
 using IconDeskTop.Views;
+using System.Diagnostics;
 
 namespace IconDeskTop.ViewModels
 {
@@ -23,8 +24,15 @@ namespace IconDeskTop.ViewModels
                 {
                     Directory.CreateDirectory(Resources.DocPath + "\\IconDesTop\\");
                 }
-                _HomeList = await HomeXml.GetRead(Resources.DocPath+"\\IconDesTop\\Xml.xml");
-                _AppList = await AppIconXml.ReadArgs(Resources.DocPath + "\\IconDesTop\\AppXml.xml");
+                try
+                {
+                    _HomeList = await HomeXml.GetRead(Resources.DocPath + "\\IconDesTop\\Xml.xml");
+                    _AppList = await AppIconXml.ReadArgs(Resources.DocPath + "\\IconDesTop\\AppXml.xml");
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("没有找到文件");
+                }
             });
 
 

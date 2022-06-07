@@ -6,4 +6,6 @@
     <SolidColorBrush x:Key="ElmentBackColor" Color="#7F000000"/>
     <SolidColorBrush x:Key="TipBackColor" Color="#FFF7F2F2"/>
     <SolidColorBrush x:Key="ElmentBorderBrush" Color="Black" Opacity="0.4"/>
+    <SolidColorBrush x:Key="AppHightBack" Color="Black" Opacity="0.3"/>
+    <SolidColorBrush x:Key="Account" Color="LightBlue"/>
 </ResourceDictionary>

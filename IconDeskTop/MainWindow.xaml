@@ -8,30 +8,17 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:control="clr-namespace:IconDeskTop.Controls"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         Background="{DynamicResource AppBackColor}"
         Style="{DynamicResource WindowStyle2}"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="80"
         MaxHeight="80"
+        x:Name="MainHome"
         MinWidth="{Binding ElementName=HomeGrid,Path=ActualWidth}"
         MaxWidth="1000"
         >
-    <Window.ContextMenu>
-        <ContextMenu Style="{StaticResource ContetMenuStyle1}">
-
-            <MenuItem Header="白色" 
-                      Foreground="{DynamicResource AppForeColor}"
-                      Click="MenuItem_Click_1" 
-                      Template="{StaticResource MenuItemStyle1}"/>
-            <Separator/>
-            <MenuItem Header="深色"
-                      Foreground="{DynamicResource AppForeColor}"
-                      Click="MenuItem_Click" Template="{StaticResource MenuItemStyle1}">
-            </MenuItem>
-           
-        </ContextMenu>
-    </Window.ContextMenu>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -47,18 +34,49 @@
         <ControlTemplate x:Key="ItemsControlStyle" TargetType="ItemsControl">
             <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}"  HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="Auto">
                 <ItemsPresenter/>
-            </ScrollViewer> 
+            </ScrollViewer>
         </ControlTemplate>
+        <ContextMenu x:Key="IconNotify" Style="{StaticResource ContetMenuStyle1}">
+            <MenuItem Header="设置" 
+                      Foreground="{DynamicResource AppForeColor}"
+                      Click="MenuItem_Click_1" 
+                      Template="{StaticResource MenuItemStyle1}"/>
+            <Separator/>
+            <MenuItem Header="退出"
+                      Foreground="{DynamicResource AppForeColor}"
+                      Click="MenuItem_Click" Template="{StaticResource MenuItemStyle1}">
+            </MenuItem>
+        </ContextMenu>
     </Window.Resources>
+    <Window.ContextMenu>
+        <ContextMenu Style="{DynamicResource ContetMenuStyle1}">
+            <MenuItem Template="{DynamicResource MenuItemStyle1}" Header="位置" Foreground="{DynamicResource AppForeColor}">
+                <MenuItem Header="靠顶部" Template="{DynamicResource MenuItemStyle1}"/>
+                <MenuItem Header="靠左侧" Template="{DynamicResource MenuItemStyle1}"/>
+                <MenuItem Header="靠右侧" Template="{DynamicResource MenuItemStyle1}"/>
+                <MenuItem Header="靠底部" Template="{DynamicResource MenuItemStyle1}"/>
+            </MenuItem>
+            <MenuItem Template="{DynamicResource MenuItemStyle1}" Header="颜色" Foreground="{DynamicResource AppForeColor}">
+                <MenuItem Header="浅色" Template="{DynamicResource MenuItemStyle1}"/>
+                <MenuItem Header="深色" Template="{DynamicResource MenuItemStyle1}"/>
+            </MenuItem>
+        </ContextMenu>
+    </Window.ContextMenu>
     <Grid x:Name="HomeGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <!--<Grid.Background>
+        <Grid.Background>
             <ImageBrush ImageSource="/Assets/gjvlel.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>-->
+        </Grid.Background>
+        <hc:NotifyIcon 
+            Text="桌面整理"
+            ContextMenu="{DynamicResource IconNotify}" Icon="/Assets/Icon.png"
+                       >
+            
+        </hc:NotifyIcon>
         <ItemsControl  
             ItemsSource="{Binding _HomeList}" 
             Template="{StaticResource ItemsControlStyle}" 

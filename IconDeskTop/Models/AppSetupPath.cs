@@ -22,9 +22,10 @@ namespace IconDeskTop.Models
             return Task.Run(() =>
             {
                 var list = new ObservableCollection<AppSetupPathArgs>();
-                //string folder =  System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                RegistryKey key = Registry.Users.OpenSubKey(@"S-1-5-21-3083020890-487398264-4240850199-1001\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders");
-                string MenuPath = key.GetValue("Start Menu").ToString()+ @"\Programs";
+                string folder =  System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                RegistryKey key = Registry.Users;
+                var key2 = key.OpenSubKey(@"S-1-5-21-741255448-2691159960-1889481200-1001\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders");
+                string MenuPath = key2.GetValue("Start Menu").ToString()+ @"\Programs";
                 DirectoryInfo dirinfo = new DirectoryInfo(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs");
                 var dirs =  dirinfo.GetDirectories();
                 var files = dirinfo.GetFiles("*.lnk");

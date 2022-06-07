@@ -19,6 +19,7 @@
     <None Remove="Assets\Computer.svg" />
     <None Remove="Assets\Control.svg" />
     <None Remove="Assets\gjvlel.jpg" />
+    <None Remove="Assets\Icon.png" />
     <None Remove="Assets\Recycle.svg" />
     <None Remove="Assets\文件夹.svg" />
   </ItemGroup>
@@ -36,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Recycle.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -60,6 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HandyControl" Version="3.3.0" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="SharpVectors" Version="1.7.7" />

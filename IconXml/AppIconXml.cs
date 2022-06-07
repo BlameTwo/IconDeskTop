@@ -90,17 +90,36 @@ namespace IconXml
             {
                 var relist = new ObservableCollection<IconArgs>();
                 var xmldoc = new XmlDocument();
-                xmldoc.Load(filename);
-                XmlNodeList lists = xmldoc.SelectNodes("//AppIcons//IconArgs");
-                foreach (XmlNode item in lists)
+                if (File.Exists(filename))
                 {
-                    string a = item.OuterXml;
-                    relist.Add(Deserialize(item.OuterXml));
+                    xmldoc.Load(filename);
+                    XmlNodeList lists = xmldoc.SelectNodes("//AppIcons//IconArgs");
+                    foreach (XmlNode item in lists)
+                    {
+                        string a = item.OuterXml;
+                        relist.Add(Deserialize(item.OuterXml));
+                    }
+                    return relist;
+                }
+                else
+                {
+                    CreateIconHeader(filename);
                 }
                 return relist;
             });
         }
 
+        /// <summary>
+        /// 生成原始空的ICON
+        /// </summary>
+        private static void CreateIconHeader(string filename)
+        {
+            var xmldoc = new XmlDocument();
+            XmlNode header = xmldoc.CreateXmlDeclaration("1.0", "utf-8", "");
+            xmldoc.AppendChild(header);
+            xmldoc.AppendChild(xmldoc.CreateElement("AppIcons"));
+            xmldoc.Save(filename);
+        }
 
         public static IconArgs Deserialize(string xmlstr)
         {
